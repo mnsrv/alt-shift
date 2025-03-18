@@ -39,16 +39,17 @@ h1 {
   font-size: 3rem;
   line-height: 1.25;
   letter-spacing: -2%;
+  margin: 0;
 }
 
 :root {
-  --color-background: #242424;
-  --color-title: #ffffff;
+  --color-background: #ffffff;
+  --color-title: #101828;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #ffffff;
-    --color-title: #101828;
+    --color-background: #242424;
+    --color-title: #ffffff;
   }
 }

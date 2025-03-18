@@ -1,0 +1,13 @@
+.applications-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eaecf0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .applications-title {
+    border-bottom-color: #303030;
+  }
+}
