@@ -1,4 +1,5 @@
 import Button from '../components/Button';
+import Goal from '../components/Goal';
 import './Applications.css';
 
 export default function Applications() {
@@ -8,6 +9,7 @@ export default function Applications() {
         <h1>Applications</h1>
         <Button icon="plus" title="Create New" size="s" />
       </div>
+      <Goal />
     </>
   );
 }
