@@ -45,11 +45,15 @@ h1 {
 :root {
   --color-background: #ffffff;
   --color-title: #101828;
+  --color-primary: #087443;
+  --color-border: #d0d5dd;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: #242424;
     --color-title: #ffffff;
+    --color-primary: #087443;
+    --color-border: #45464a;
   }
 }

@@ -1,3 +1,4 @@
+import Button from '../components/Button';
 import './Applications.css';
 
 export default function Applications() {
@@ -5,7 +6,7 @@ export default function Applications() {
     <>
       <div className="applications-title">
         <h1>Applications</h1>
-        <div>create new</div>
+        <Button icon="plus" title="Create New" size="s" />
       </div>
     </>
   );
