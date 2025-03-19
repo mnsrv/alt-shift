@@ -1,7 +1,11 @@
+import { useNavigate } from 'react-router';
+
 import Button from './Button';
 import './Goal.css';
 
 export default function Goal() {
+  const navigate = useNavigate();
+
   return (
     <div className="goal">
       <div className="goal-content">
@@ -10,7 +14,13 @@ export default function Goal() {
           Generate and send out couple more job applications today to get hired
           faster
         </p>
-        <Button icon="plus" title="Create New" />
+        <Button
+          icon="plus"
+          title="Create New"
+          onClick={() => {
+            navigate('/new');
+          }}
+        />
       </div>
     </div>
   );

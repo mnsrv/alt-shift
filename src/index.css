@@ -33,6 +33,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: inherit;
+}
+
 h1 {
   font-family: 'Fixel Display';
   font-weight: 600;
@@ -48,6 +52,26 @@ h2 {
   line-height: 2.75rem;
   letter-spacing: -2%;
   margin: 0;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #eaecf0;
+  margin: 1rem 0;
+}
+@media (prefers-color-scheme: dark) {
+  hr {
+    background-color: #303030;
+  }
+}
+
+.row {
+  display: flex;
+  gap: 2rem;
+}
+.col {
+  flex: 1 0 0%;
 }
 
 :root {
