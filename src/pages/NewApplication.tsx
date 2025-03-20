@@ -30,7 +30,7 @@ export default function NewApplication() {
               label="Additional details"
               placeholder="Describe why you are a great fit or paste your bio"
             />
-            <Button title="Generate Now" />
+            <Button title="Generate Now" type="submit" />
           </div>
         </form>
       </div>
