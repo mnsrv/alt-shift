@@ -1,41 +1,49 @@
 import { ButtonHTMLAttributes } from 'react';
+import classNames from 'classnames';
 
 import Icons from './Icons';
 
 import './Button.css';
 
-type Size = 's' | 'm';
+type ButtonSize = 's' | 'm';
 type Variant = 'primary' | 'secondary';
 
 type ButtonProps = {
   icon?: keyof typeof Icons;
   title: string;
-  size?: Size;
+  buttonSize?: ButtonSize;
   variant?: Variant;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({
   icon,
   title,
-  size = 'm',
+  buttonSize = 'm',
   variant = 'primary',
   type = 'button',
   className = '',
   ...buttonProps
 }: ButtonProps) {
-  const btnClass = `btn btn-${size} btn-${variant} ${className}`.trim();
-
   const renderIcon = () => {
     if (!icon) return null;
 
     const Icon = Icons[icon];
-    const iconSize = size === 'm' ? 24 : 20;
+    const iconSize = buttonSize === 'm' ? 24 : 20;
 
     return <Icon size={iconSize} />;
   };
 
   return (
-    <button className={btnClass} type={type} {...buttonProps}>
+    <button
+      className={classNames(
+        'btn',
+        `btn-${buttonSize}`,
+        `btn-${variant}`,
+        className,
+      )}
+      type={type}
+      {...buttonProps}
+    >
       {renderIcon()}
       {title}
     </button>

@@ -14,7 +14,7 @@ export default function Applications() {
         <Button
           icon="plus"
           title="Create New"
-          size="s"
+          buttonSize="s"
           onClick={() => {
             navigate('/new');
           }}
