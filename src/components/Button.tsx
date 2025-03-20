@@ -10,6 +10,7 @@ type ButtonProps = {
   title: string;
   size?: Size;
   variant?: Variant;
+  disabled?: boolean;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -18,6 +19,7 @@ export default function Button({
   title,
   size = 'm',
   variant = 'primary',
+  disabled,
   onClick,
 }: ButtonProps) {
   const Icon = Icons[icon];
@@ -25,7 +27,7 @@ export default function Button({
   const btnClass = `btn btn-${size} btn-${variant}`;
 
   return (
-    <button className={btnClass} onClick={onClick}>
+    <button className={btnClass} onClick={onClick} disabled={disabled}>
       {icon ? <Icon size={size === 'm' ? 24 : 20} /> : null}
       {title}
     </button>
