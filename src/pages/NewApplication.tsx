@@ -1,19 +1,44 @@
-import { useForm } from 'react-hook-form';
+import { Control, useForm, useWatch } from 'react-hook-form';
+import classNames from 'classnames';
+
 import Button from '../components/Button';
 import { Input, TextArea } from '../components/Input';
 
 type ApplicationFormData = {
-  title: string;
   jobTitle: string;
   company: string;
   skills: string;
   details: string;
 };
 
+type ApplicationTitleProps = {
+  control: Control<ApplicationFormData>;
+};
+const ApplicationTitle = ({ control }: ApplicationTitleProps) => {
+  const jobTitle = useWatch({
+    name: 'jobTitle',
+    control,
+  });
+  const company = useWatch({
+    name: 'company',
+    control,
+  });
+
+  const isEmpty = !jobTitle && !company;
+  const title = isEmpty
+    ? 'New application'
+    : [jobTitle, company].filter(Boolean).join(', ');
+
+  return (
+    <h2 className={classNames('nowrap', { 'color-text': isEmpty })}>{title}</h2>
+  );
+};
+
 export default function NewApplication() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { isSubmitting, isValid, errors },
   } = useForm<ApplicationFormData>({
     mode: 'onChange',
@@ -26,14 +51,9 @@ export default function NewApplication() {
   return (
     <div className="row">
       <div className="col">
+        <ApplicationTitle control={control} />
+        <hr />
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            placeholder="New application"
-            inputSize="m"
-            id="title"
-            {...register('title', { required: true })}
-          />
-          <hr />
           <div className="gap">
             <div className="row" style={{ gap: '1rem' }}>
               <div className="col">

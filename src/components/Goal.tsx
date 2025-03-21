@@ -10,7 +10,7 @@ export default function Goal() {
     <div className="goal">
       <div className="goal-content">
         <h2>Hit your goal</h2>
-        <p className="text">
+        <p className="text color-text">
           Generate and send out couple more job applications today to get hired
           faster
         </p>

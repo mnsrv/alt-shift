@@ -3,20 +3,11 @@ import classNames from 'classnames';
 
 import './Input.css';
 
-type InputSize = 's' | 'm';
-
 type InputProps = {
   label?: string;
-  inputSize?: InputSize;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export function Input({
-  label,
-  inputSize = 's',
-  className = '',
-  id,
-  ...rest
-}: InputProps) {
+export function Input({ label, className, id, ...rest }: InputProps) {
   return (
     <div className="input-wrapper">
       {label && (
@@ -24,11 +15,7 @@ export function Input({
           {label}
         </label>
       )}
-      <input
-        id={id}
-        className={classNames('input', `input-${inputSize}`, className)}
-        {...rest}
-      />
+      <input id={id} className={classNames('input', className)} {...rest} />
     </div>
   );
 }
@@ -40,7 +27,7 @@ type TextAreaProps = {
 
 export function TextArea({
   label,
-  className = '',
+  className,
   id,
   maxLength,
   onChange,
