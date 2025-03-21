@@ -1,5 +1,11 @@
 import { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
-import { useWatch, Control, FieldValues } from 'react-hook-form';
+import {
+  useWatch,
+  Control,
+  FieldValues,
+  Path,
+  UseFormRegister,
+} from 'react-hook-form';
 import classNames from 'classnames';
 
 import './Input.css';
@@ -21,15 +27,19 @@ export function Input({ label, className, id, ...rest }: InputProps) {
   );
 }
 
-type CharCounterProps = {
-  control: Control<FieldValues>;
+type CharCounterProps<TFieldValues extends FieldValues = FieldValues> = {
+  control: Control<TFieldValues>;
   maxLength: number;
-  name: string;
+  name: Path<TFieldValues>;
 };
 
-function CharCounter({ control, maxLength, name }: CharCounterProps) {
+function CharCounter<TFieldValues extends FieldValues>({
+  control,
+  maxLength,
+  name,
+}: CharCounterProps<TFieldValues>) {
   const fieldValue = useWatch({ name, control });
-  const charCount = fieldValue?.length || 0;
+  const charCount = typeof fieldValue === 'string' ? fieldValue.length : 0;
 
   return (
     <div
@@ -42,37 +52,37 @@ function CharCounter({ control, maxLength, name }: CharCounterProps) {
   );
 }
 
-type TextAreaProps = {
+type TextAreaProps<TFieldValues extends FieldValues = FieldValues> = {
   label?: string;
   error?: boolean;
-  control?: Control<FieldValues>;
-} & TextareaHTMLAttributes<HTMLTextAreaElement>;
+  control?: Control<TFieldValues>;
+  maxLength?: number;
+} & TextareaHTMLAttributes<HTMLTextAreaElement> &
+  ReturnType<UseFormRegister<TFieldValues>>;
 
-export function TextArea({
+export function TextArea<TFieldValues extends FieldValues = FieldValues>({
   label,
   className,
-  id,
   maxLength,
   error,
   control,
   ...rest
-}: TextAreaProps) {
+}: TextAreaProps<TFieldValues>) {
   return (
     <div className="input-wrapper">
       {label && (
-        <label className="label" htmlFor={id}>
+        <label className="label" htmlFor={rest.id}>
           {label}
         </label>
       )}
       <textarea
-        id={id}
         className={classNames('input', 'input-textarea', className, {
           'input-error': error,
         })}
         {...rest}
       />
-      {!!maxLength && !!id && !!control && (
-        <CharCounter name={id} control={control} maxLength={maxLength} />
+      {!!maxLength && !!control && !!rest.name && (
+        <CharCounter name={rest.name} control={control} maxLength={maxLength} />
       )}
     </div>
   );
