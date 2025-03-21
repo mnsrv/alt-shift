@@ -1,4 +1,5 @@
-import { InputHTMLAttributes, TextareaHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
+import { useWatch, Control, FieldValues } from 'react-hook-form';
 import classNames from 'classnames';
 
 import './Input.css';
@@ -20,9 +21,31 @@ export function Input({ label, className, id, ...rest }: InputProps) {
   );
 }
 
+type CharCounterProps = {
+  control: Control<FieldValues>;
+  maxLength: number;
+  name: string;
+};
+
+function CharCounter({ control, maxLength, name }: CharCounterProps) {
+  const fieldValue = useWatch({ name, control });
+  const charCount = fieldValue?.length || 0;
+
+  return (
+    <div
+      className={classNames('char-counter', {
+        'char-counter-error': charCount > maxLength,
+      })}
+    >
+      {`${charCount}/${maxLength}`}
+    </div>
+  );
+}
+
 type TextAreaProps = {
   label?: string;
   error?: boolean;
+  control?: Control<FieldValues>;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export function TextArea({
@@ -30,17 +53,10 @@ export function TextArea({
   className,
   id,
   maxLength,
-  onChange,
   error,
+  control,
   ...rest
 }: TextAreaProps) {
-  const [charCount, setCharCount] = useState(0);
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCharCount(e.target.value.length);
-    onChange?.(e);
-  };
-
   return (
     <div className="input-wrapper">
       {label && (
@@ -53,17 +69,10 @@ export function TextArea({
         className={classNames('input', 'input-textarea', className, {
           'input-error': error,
         })}
-        onChange={handleChange}
         {...rest}
       />
-      {maxLength && (
-        <div
-          className={classNames('char-counter', {
-            'char-counter-error': charCount > maxLength,
-          })}
-        >
-          {`${charCount}/${maxLength}`}
-        </div>
+      {!!maxLength && !!id && !!control && (
+        <CharCounter name={id} control={control} maxLength={maxLength} />
       )}
     </div>
   );

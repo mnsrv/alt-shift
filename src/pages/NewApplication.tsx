@@ -84,6 +84,7 @@ export default function NewApplication() {
               placeholder="Describe why you are a great fit or paste your bio"
               rows={9}
               id="details"
+              control={control}
               maxLength={50}
               error={errors.details?.type === 'maxLength'}
               {...register('details', {
