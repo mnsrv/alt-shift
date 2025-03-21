@@ -1,11 +1,17 @@
 import { useNavigate } from 'react-router';
+import { useStore } from '@nanostores/react';
 
 import Button from '../components/Button';
 import Goal from '../components/Goal';
+
+import { $applications } from '../store/applications';
+
 import './Applications.css';
+import Application from '../components/Application';
 
 export default function Applications() {
   const navigate = useNavigate();
+  const applications = useStore($applications);
 
   return (
     <>
@@ -21,6 +27,9 @@ export default function Applications() {
         />
       </div>
       <hr />
+      {applications.map((a) => (
+        <Application key={a.id} text={a.text} />
+      ))}
       <Goal />
     </>
   );

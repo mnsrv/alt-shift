@@ -1,0 +1,9 @@
+.application {
+  background-color: #f2f4f7;
+  min-height: 100%;
+  padding: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: var(--color-text);
+  border-radius: 0.75rem;
+}

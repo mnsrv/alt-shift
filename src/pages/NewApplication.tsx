@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import { Control, useForm, useWatch } from 'react-hook-form';
 import classNames from 'classnames';
+import { nanoid } from 'nanoid';
 
 import Button from '../components/Button';
 import { Input, TextArea } from '../components/Input';
+import Application from '../components/Application';
+
+import { addApplication } from '../store/applications';
 
 type ApplicationFormData = {
   jobTitle: string;
@@ -43,9 +48,24 @@ export default function NewApplication() {
   } = useForm<ApplicationFormData>({
     mode: 'onChange',
   });
+  const [application, setApplication] = useState('');
 
   const onSubmit = (data: ApplicationFormData) => {
     console.log('Form submitted:', data);
+    const id = nanoid();
+    const text = `Dear ${data.company} Team,
+
+I am writing to express my interest in the ${data.jobTitle} position.
+
+My experience in the realm combined with my skills in ${data.skills} make me a strong candidate for this role.
+
+${data.details}
+
+I am confident that my skills and enthusiasm would translate into valuable contributions to your esteemed organization.
+
+Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.`;
+    addApplication({ id, text });
+    setApplication(text);
   };
 
   return (
@@ -85,11 +105,11 @@ export default function NewApplication() {
               rows={9}
               id="details"
               control={control}
-              maxLength={50}
+              maxLength={1200}
               error={errors.details?.type === 'maxLength'}
               {...register('details', {
                 required: true,
-                maxLength: 50,
+                maxLength: 1200,
               })}
             />
             <Button
@@ -101,7 +121,7 @@ export default function NewApplication() {
         </form>
       </div>
       <div className="col">
-        Your personalized job application will appear here...
+        <Application text={application} />
       </div>
     </div>
   );
