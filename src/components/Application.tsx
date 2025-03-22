@@ -2,6 +2,7 @@ import classNames from 'classnames';
 
 import './Application.css';
 import Button from './Button';
+import CopyButton from './CopyButton';
 
 type ApplicationProps = {
   text?: string;
@@ -10,10 +11,11 @@ type ApplicationProps = {
 
 export default function Application({ text, isCollapsed }: ApplicationProps) {
   const placeholder = 'Your personalized job application will appear here...';
+
   return (
     <div
       className={classNames('application', {
-        'application-collapsed': isCollapsed,
+        application_collapsed: isCollapsed,
       })}
     >
       <div className="application-text">{text || placeholder}</div>
@@ -23,13 +25,7 @@ export default function Application({ text, isCollapsed }: ApplicationProps) {
         ) : (
           <span />
         )}
-        <Button
-          icon="copy"
-          iconPosition="right"
-          buttonSize="s"
-          variant="link"
-          title="Copy to clipboard"
-        />
+        <CopyButton textToCopy={text} />
       </div>
     </div>
   );
