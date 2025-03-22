@@ -27,9 +27,12 @@ export default function Applications() {
         />
       </div>
       <hr />
-      {applications.map((a) => (
-        <Application key={a.id} text={a.text} />
-      ))}
+      <div className="grid grid-cols-2" style={{ gap: '1.5rem 1rem' }}>
+        {applications.map((a) => (
+          <Application key={a.id} text={a.text} isCollapsed />
+        ))}
+      </div>
+
       <Goal />
     </>
   );

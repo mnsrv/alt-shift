@@ -6,10 +6,12 @@ import Icons from './Icons';
 import './Button.css';
 
 type ButtonSize = 's' | 'm';
-type Variant = 'primary' | 'secondary';
+type Variant = 'primary' | 'secondary' | 'link';
+type IconPosition = 'left' | 'right';
 
 type ButtonProps = {
   icon?: keyof typeof Icons;
+  iconPosition?: IconPosition;
   title: string;
   buttonSize?: ButtonSize;
   variant?: Variant;
@@ -17,6 +19,7 @@ type ButtonProps = {
 
 export default function Button({
   icon,
+  iconPosition = 'left',
   title,
   buttonSize = 'm',
   variant = 'primary',
@@ -44,8 +47,9 @@ export default function Button({
       type={type}
       {...buttonProps}
     >
-      {renderIcon()}
+      {iconPosition === 'left' && renderIcon()}
       {title}
+      {iconPosition === 'right' && renderIcon()}
     </button>
   );
 }
