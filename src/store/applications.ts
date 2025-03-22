@@ -14,6 +14,6 @@ export function addApplication(application: Application) {
   $applications.set([...$applications.get(), application]);
 }
 
-export function deleteApplication(application: Application) {
-  $applications.set($applications.get().filter((a) => a.id === application.id));
+export function deleteApplication(id: string) {
+  $applications.set($applications.get().filter((a) => a.id !== id));
 }
