@@ -1,8 +1,14 @@
 .header {
   display: flex;
+  justify-content: space-between;
   margin-bottom: 2rem;
 }
 .logo {
   display: block;
   height: 3rem;
+}
+.header-progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

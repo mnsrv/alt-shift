@@ -1,0 +1,38 @@
+.progress-circle {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: #d1fadf;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.progress {
+  width: 2rem;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-title);
+  opacity: 0.24;
+}
+
+.progress_active {
+  opacity: 1;
+}
+
+.progress-container_small {
+  gap: 0.25rem;
+}
+.progress-container_small .progress {
+  width: 0.5rem;
+}
+
+.progress-text {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: var(--color-text);
+  text-align: center;
+}
