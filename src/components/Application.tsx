@@ -33,7 +33,7 @@ export default function Application({
         ) : (
           <span />
         )}
-        <CopyButton textToCopy={text || placeholder} />
+        <CopyButton textToCopy={text} />
       </div>
     </div>
   );

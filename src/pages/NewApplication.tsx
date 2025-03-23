@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { Control, useForm, useWatch } from 'react-hook-form';
 import classNames from 'classnames';
 import { nanoid } from 'nanoid';
@@ -6,6 +7,7 @@ import { nanoid } from 'nanoid';
 import Button from '../components/Button';
 import { Input, TextArea } from '../components/Input';
 import Application from '../components/Application';
+import Goal from '../components/Goal';
 
 import { addApplication } from '../store/applications';
 
@@ -44,11 +46,22 @@ export default function NewApplication() {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { isSubmitting, isValid, errors },
   } = useForm<ApplicationFormData>({
     mode: 'onChange',
   });
+  const location = useLocation();
   const [application, setApplication] = useState('');
+
+  useEffect(() => {
+    // reset form when user navigates to the same page
+    if (application) {
+      reset();
+      setApplication('');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.key]);
 
   const onSubmit = (data: ApplicationFormData) => {
     console.log('Form submitted:', data);
@@ -69,60 +82,75 @@ Thank you for considering my application. I eagerly await the opportunity to dis
   };
 
   return (
-    <div className="row">
-      <div className="col">
-        <ApplicationTitle control={control} />
-        <hr />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="gap">
-            <div className="row" style={{ gap: '1rem' }}>
-              <div className="col">
-                <Input
-                  label="Job title"
-                  placeholder="Product manager"
-                  id="jobTitle"
-                  {...register('jobTitle', { required: true })}
-                />
+    <>
+      <div className="row">
+        <div className="col">
+          <ApplicationTitle control={control} />
+          <hr />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="gap">
+              <div className="row" style={{ gap: '1rem' }}>
+                <div className="col">
+                  <Input
+                    label="Job title"
+                    placeholder="Product manager"
+                    id="jobTitle"
+                    {...register('jobTitle', { required: true })}
+                  />
+                </div>
+                <div className="col">
+                  <Input
+                    label="Company"
+                    placeholder="Apple"
+                    id="company"
+                    {...register('company', { required: true })}
+                  />
+                </div>
               </div>
-              <div className="col">
-                <Input
-                  label="Company"
-                  placeholder="Apple"
-                  id="company"
-                  {...register('company', { required: true })}
+              <Input
+                label="I am good at..."
+                placeholder="HTML, CSS and doing things in time"
+                id="skills"
+                {...register('skills', { required: true })}
+              />
+              <TextArea
+                label="Additional details"
+                placeholder="Describe why you are a great fit or paste your bio"
+                rows={9}
+                id="details"
+                control={control}
+                maxLength={1200}
+                error={errors.details?.type === 'maxLength'}
+                {...register('details', {
+                  required: true,
+                  maxLength: 1200,
+                })}
+              />
+              {!application ? (
+                <Button
+                  title={isSubmitting ? 'Saving...' : 'Generate Now'}
+                  type="submit"
+                  disabled={isSubmitting || !isValid}
                 />
-              </div>
+              ) : (
+                <Button
+                  icon="repeat"
+                  title="Try Again"
+                  variant="secondary"
+                  onClick={() => {
+                    reset();
+                    setApplication('');
+                  }}
+                />
+              )}
             </div>
-            <Input
-              label="I am good at..."
-              placeholder="HTML, CSS and doing things in time"
-              id="skills"
-              {...register('skills', { required: true })}
-            />
-            <TextArea
-              label="Additional details"
-              placeholder="Describe why you are a great fit or paste your bio"
-              rows={9}
-              id="details"
-              control={control}
-              maxLength={1200}
-              error={errors.details?.type === 'maxLength'}
-              {...register('details', {
-                required: true,
-                maxLength: 1200,
-              })}
-            />
-            <Button
-              title={isSubmitting ? 'Saving...' : 'Generate Now'}
-              type="submit"
-              disabled={isSubmitting || !isValid}
-            />
-          </div>
-        </form>
+          </form>
+        </div>
+        <div className="col">
+          <Application text={application} />
+        </div>
       </div>
-      <div className="col">
-        <Application text={application} />
-      </div>
-    </div>
+      {application && <Goal />}
+    </>
   );
 }
