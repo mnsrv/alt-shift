@@ -22,7 +22,7 @@ export default function Header() {
 
       <div className="header-right">
         <div className="header-progress">
-          <p>{`${count}/${DAY_GOAL} applications generated`}</p>
+          <p className="mobile-hidden">{`${count}/${DAY_GOAL} applications generated`}</p>
           <Progress value={count} max={DAY_GOAL} isSmall />
         </div>
 

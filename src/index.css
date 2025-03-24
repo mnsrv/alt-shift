@@ -30,6 +30,7 @@ html {
 
 body {
   margin: 2rem auto 7.5rem;
+  padding: 0 1rem;
   max-width: 70rem;
   color-scheme: light dark;
   background-color: var(--color-background);
@@ -52,7 +53,7 @@ h1 {
   font-size: 3rem;
   line-height: 1.25;
   letter-spacing: -2%;
-  margin: 0 0 1rem;
+  margin: 0;
 }
 h2 {
   font-family: 'Fixel Display';
@@ -60,7 +61,7 @@ h2 {
   font-size: 2.25rem;
   line-height: 2.75rem;
   letter-spacing: -2%;
-  margin: 0 0 0.75rem;
+  margin: 0;
 }
 p {
   font-size: 1.125rem;
@@ -73,7 +74,10 @@ hr {
   border: none;
   height: 1px;
   background-color: #eaecf0;
-  margin: 0 0 1rem;
+  margin: 1rem 0;
+}
+h2 + hr {
+  margin-top: 0.75rem;
 }
 @media (prefers-color-scheme: dark) {
   hr {
@@ -113,5 +117,17 @@ hr {
     --color-primary: #087443;
     --color-secondary: #ffffff;
     --color-border: #45464a;
+  }
+}
+
+@media (max-width: 960px) {
+  html {
+    font-size: 14px;
+  }
+  body {
+    margin: 1rem auto;
+  }
+  .mobile-hidden {
+    display: none;
   }
 }

@@ -6,6 +6,7 @@
 .logo {
   display: block;
   height: 3rem;
+  width: auto;
 }
 .header-right {
   display: flex;
