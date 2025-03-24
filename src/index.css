@@ -121,9 +121,10 @@ h2 + hr {
     --color-background: #242424;
     --color-title: #ffffff;
     --color-text: #909090;
-    --color-primary: #087443;
+    --color-primary: #1f8752;
     --color-secondary: #ffffff;
     --color-link: #ffffff;
+    --color-danger: #ef4444;
     --color-border: #45464a;
     --color-application-background: #303030;
     --color-success: #4ade80;

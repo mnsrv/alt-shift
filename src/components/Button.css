@@ -8,6 +8,7 @@
   font-family: 'Fixel Text', system-ui, Avenir, Helvetica, Arial, sans-serif;
   cursor: pointer;
   box-shadow: 0px 1px 2px 0px #1018280d;
+  transition: all 0.2s ease;
 }
 @media (prefers-color-scheme: dark) {
   .btn {
@@ -41,11 +42,21 @@
   color: #ffffff;
   border-color: var(--color-primary);
 }
+
+.btn-primary:hover:not(:disabled) {
+  background-color: oklch(from var(--color-primary) calc(l - 0.1) c h);
+}
+
 .btn-secondary {
   background-color: transparent;
   color: var(--color-secondary);
   border-color: var(--color-border);
 }
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-border);
+}
+
 .btn-link {
   color: var(--color-link);
   border: none;
@@ -53,6 +64,11 @@
   background: none;
   box-shadow: none;
 }
+
+.btn-link:hover:not(:disabled) {
+  color: oklch(from var(--color-link) calc(l - 0.2) c h);
+}
+
 .btn:disabled {
   background-color: var(--color-border);
   color: #98a2b3;
