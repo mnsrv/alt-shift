@@ -3,11 +3,12 @@ import { useStore } from '@nanostores/react';
 
 import Button from '../components/Button';
 import Goal from '../components/Goal';
+import Grid from '../components/Grid';
+import Application from '../components/Application';
 
 import { $applications } from '../store/applications';
 
 import './Applications.css';
-import Application from '../components/Application';
 
 export default function Applications() {
   const navigate = useNavigate();
@@ -26,11 +27,11 @@ export default function Applications() {
         />
       </div>
       <hr />
-      <div className="grid grid-cols-2" style={{ gap: '1.5rem 1rem' }}>
+      <Grid columns={2} gap="1.5rem 1rem">
         {applications.map((a) => (
           <Application key={a.id} id={a.id} text={a.text} isCollapsed />
         ))}
-      </div>
+      </Grid>
 
       <Goal />
     </>

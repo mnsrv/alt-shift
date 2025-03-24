@@ -8,6 +8,7 @@ import Button from '../components/Button';
 import { Input, TextArea } from '../components/Input';
 import Application from '../components/Application';
 import Goal from '../components/Goal';
+import Grid from '../components/Grid';
 
 import { addApplication, getTodayDate } from '../store/applications';
 
@@ -83,30 +84,26 @@ Thank you for considering my application. I eagerly await the opportunity to dis
 
   return (
     <>
-      <div className="row">
-        <div className="col">
+      <Grid columns={2} gap="1.5rem">
+        <div>
           <ApplicationTitle control={control} />
           <hr />
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="gap">
-              <div className="row" style={{ gap: '1rem' }}>
-                <div className="col">
-                  <Input
-                    label="Job title"
-                    placeholder="Product manager"
-                    id="jobTitle"
-                    {...register('jobTitle', { required: true })}
-                  />
-                </div>
-                <div className="col">
-                  <Input
-                    label="Company"
-                    placeholder="Apple"
-                    id="company"
-                    {...register('company', { required: true })}
-                  />
-                </div>
-              </div>
+              <Grid columns={2} gap="1rem">
+                <Input
+                  label="Job title"
+                  placeholder="Product manager"
+                  id="jobTitle"
+                  {...register('jobTitle', { required: true })}
+                />
+                <Input
+                  label="Company"
+                  placeholder="Apple"
+                  id="company"
+                  {...register('company', { required: true })}
+                />
+              </Grid>
               <Input
                 label="I am good at..."
                 placeholder="HTML, CSS and doing things in time"
@@ -148,10 +145,8 @@ Thank you for considering my application. I eagerly await the opportunity to dis
             </div>
           </form>
         </div>
-        <div className="col">
-          <Application text={application} />
-        </div>
-      </div>
+        <Application text={application} />
+      </Grid>
       {application && <Goal />}
     </>
   );

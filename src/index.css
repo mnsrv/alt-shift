@@ -87,20 +87,6 @@ hr {
   gap: 1rem;
 }
 
-.row {
-  display: flex;
-  gap: 2rem;
-}
-.col {
-  flex: 1 0 0%;
-  min-width: 0;
-}
-.grid {
-  display: grid;
-}
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
 .nowrap {
   overflow: hidden;
   text-overflow: ellipsis;
