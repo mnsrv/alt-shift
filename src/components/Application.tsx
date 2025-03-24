@@ -26,7 +26,7 @@ export default function Application({
         application_collapsed: isCollapsed,
       })}
     >
-      <div className="application-text">{text || placeholder}</div>
+      <p className="application-text">{text || placeholder}</p>
       <div className="application-buttons">
         {id ? (
           <DeleteButton onDelete={() => deleteApplication(id)} />

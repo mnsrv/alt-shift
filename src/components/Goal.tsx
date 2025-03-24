@@ -21,10 +21,10 @@ export default function Goal() {
       <div className="goal-content">
         <div className="goal-top">
           <h2>Hit your goal</h2>
-          <div className="goal-text">
+          <p>
             Generate and send out couple more job applications today to get
             hired faster
-          </div>
+          </p>
           <Button
             icon="plus"
             title="Create New"
@@ -35,7 +35,7 @@ export default function Goal() {
         </div>
         <div className="goal-progress">
           <Progress value={applicationsCount} max={DAY_GOAL} />
-          <div className="progress-text">{`${applicationsCount} out of ${DAY_GOAL}`}</div>
+          <p>{`${applicationsCount} out of ${DAY_GOAL}`}</p>
         </div>
       </div>
     </div>

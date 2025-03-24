@@ -30,12 +30,6 @@
   text-align: center;
 }
 
-.goal-text {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  color: var(--color-text);
-}
-
 .goal-progress {
   display: flex;
   flex-direction: column;

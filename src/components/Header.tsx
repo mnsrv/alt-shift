@@ -18,7 +18,7 @@ export default function Header() {
       </Link>
 
       <div className="header-progress">
-        <div className="progress-text">{`${applicationsCount}/${DAY_GOAL} applications generated`}</div>
+        <p>{`${applicationsCount}/${DAY_GOAL} applications generated`}</p>
         <Progress value={applicationsCount} max={DAY_GOAL} isSmall />
       </div>
     </header>
