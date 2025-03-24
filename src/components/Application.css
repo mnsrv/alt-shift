@@ -1,5 +1,5 @@
 .application {
-  background-color: #f2f4f7;
+  background-color: var(--color-application-background);
   min-height: 100%;
   padding: 1.5rem;
   border-radius: 0.75rem;
@@ -14,7 +14,7 @@
 }
 .application_collapsed .application-text:after {
   content: '';
-  background: linear-gradient(180deg, rgba(242, 244, 247, 0) 0%, #f2f4f7 100%);
+  background: linear-gradient(180deg, rgba(242, 244, 247, 0) 0%, var(--color-application-background) 100%);
   position: absolute;
   bottom: -0.5rem;
   left: 0;

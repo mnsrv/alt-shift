@@ -47,7 +47,7 @@
   border-color: var(--color-border);
 }
 .btn-link {
-  color: #475467;
+  color: var(--color-link);
   border: none;
   padding: 0;
   background: none;
