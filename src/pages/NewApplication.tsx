@@ -9,7 +9,7 @@ import { Input, TextArea } from '../components/Input';
 import Application from '../components/Application';
 import Goal from '../components/Goal';
 
-import { addApplication } from '../store/applications';
+import { addApplication, getTodayDate } from '../store/applications';
 
 type ApplicationFormData = {
   jobTitle: string;
@@ -77,7 +77,7 @@ ${data.details}
 I am confident that my skills and enthusiasm would translate into valuable contributions to your esteemed organization.
 
 Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.`;
-    addApplication({ id, text });
+    addApplication({ id, text, date: getTodayDate() });
     setApplication(text);
   };
 
