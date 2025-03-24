@@ -129,6 +129,7 @@ Thank you for considering my application. I eagerly await the opportunity to dis
               {!application ? (
                 <Button
                   title={isSubmitting ? 'Saving...' : 'Generate Now'}
+                  buttonSize="l"
                   type="submit"
                   disabled={isSubmitting || !isValid}
                 />
@@ -137,6 +138,7 @@ Thank you for considering my application. I eagerly await the opportunity to dis
                   icon="repeat"
                   title="Try Again"
                   variant="secondary"
+                  buttonSize="l"
                   onClick={() => {
                     reset();
                     setApplication('');

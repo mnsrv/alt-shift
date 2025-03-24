@@ -46,7 +46,6 @@ export default function CopyButton({ textToCopy }: CopyButtonProps) {
     <Button
       icon="copy"
       iconPosition="right"
-      buttonSize="s"
       variant="link"
       title={success || 'Copy to clipboard'}
       onClick={copyToClipboard}

@@ -28,6 +28,7 @@ export default function Goal() {
           </p>
           <Button
             icon="plus"
+            buttonSize="l"
             title="Create New"
             onClick={() => {
               navigate('/new');

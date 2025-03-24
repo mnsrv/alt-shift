@@ -46,7 +46,6 @@ export default function DeleteButton({ onDelete }: DeleteButtonProps) {
   return (
     <Button
       icon="trash"
-      buttonSize="s"
       variant="link"
       title={
         confirmState === 'confirm' ? 'Click again to confirm delete' : 'Delete'

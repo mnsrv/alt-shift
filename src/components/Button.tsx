@@ -5,14 +5,14 @@ import Icons from './Icons';
 
 import './Button.css';
 
-type ButtonSize = 's' | 'm';
+type ButtonSize = 's' | 'm' | 'l';
 type Variant = 'primary' | 'secondary' | 'link';
 type IconPosition = 'left' | 'right';
 
 type ButtonProps = {
   icon?: keyof typeof Icons;
   iconPosition?: IconPosition;
-  title: string;
+  title?: string;
   buttonSize?: ButtonSize;
   variant?: Variant;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
@@ -31,7 +31,7 @@ export default function Button({
     if (!icon) return null;
 
     const Icon = Icons[icon];
-    const iconSize = buttonSize === 'm' ? 24 : 20;
+    const iconSize = buttonSize === 'l' ? 24 : 20;
 
     return <Icon size={iconSize} />;
   };
