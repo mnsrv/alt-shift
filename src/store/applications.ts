@@ -24,7 +24,7 @@ export const $applicationsCount = computed($applications, (applications) => {
 export const DAY_GOAL = 5;
 
 export function addApplication(application: Application) {
-  $applications.set([...$applications.get(), application]);
+  $applications.set([application, ...$applications.get()]);
 }
 
 export function deleteApplication(id: string) {
