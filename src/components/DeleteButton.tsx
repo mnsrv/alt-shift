@@ -48,7 +48,7 @@ export default function DeleteButton({ onDelete }: DeleteButtonProps) {
       icon="trash"
       variant="link"
       title={
-        confirmState === 'confirm' ? 'Click again to confirm delete' : 'Delete'
+        confirmState === 'confirm' ? 'Really delete?' : 'Delete'
       }
       onClick={handleClick}
     />
