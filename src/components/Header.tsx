@@ -10,6 +10,7 @@ import './Header.css';
 
 export default function Header() {
   const applicationsCount = useStore($applicationsCount);
+  const count = applicationsCount > DAY_GOAL ? DAY_GOAL : applicationsCount;
 
   return (
     <header className="header">
@@ -18,8 +19,8 @@ export default function Header() {
       </Link>
 
       <div className="header-progress">
-        <p>{`${applicationsCount}/${DAY_GOAL} applications generated`}</p>
-        <Progress value={applicationsCount} max={DAY_GOAL} isSmall />
+        <p>{`${count}/${DAY_GOAL} applications generated`}</p>
+        <Progress value={count} max={DAY_GOAL} isSmall />
       </div>
     </header>
   );

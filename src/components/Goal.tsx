@@ -11,8 +11,9 @@ import './Goal.css';
 export default function Goal() {
   const navigate = useNavigate();
   const applicationsCount = useStore($applicationsCount);
+  const count = applicationsCount > DAY_GOAL ? DAY_GOAL : applicationsCount;
 
-  if (applicationsCount >= DAY_GOAL) {
+  if (count >= DAY_GOAL) {
     return null;
   }
 
@@ -34,8 +35,8 @@ export default function Goal() {
           />
         </div>
         <div className="goal-progress">
-          <Progress value={applicationsCount} max={DAY_GOAL} />
-          <p>{`${applicationsCount} out of ${DAY_GOAL}`}</p>
+          <Progress value={count} max={DAY_GOAL} />
+          <p>{`${count} out of ${DAY_GOAL}`}</p>
         </div>
       </div>
     </div>
