@@ -84,7 +84,7 @@ Thank you for considering my application. I eagerly await the opportunity to dis
 
   return (
     <>
-      <Grid columns={2} gap="1.5rem">
+      <Grid columns={2} gap="2rem">
         <div>
           <ApplicationTitle control={control} />
           <hr />

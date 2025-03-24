@@ -31,7 +31,7 @@ html {
 body {
   margin: 2rem auto 7.5rem;
   padding: 0 1rem;
-  max-width: 70rem;
+  max-width: 72rem;
   color-scheme: light dark;
   background-color: var(--color-background);
   color: var(--color-title);
@@ -52,7 +52,7 @@ h1 {
   font-weight: 600;
   font-size: 3rem;
   line-height: 1.25;
-  letter-spacing: -2%;
+  letter-spacing: -0.06rem;
   margin: 0;
 }
 h2 {
@@ -60,7 +60,7 @@ h2 {
   font-weight: 600;
   font-size: 2.25rem;
   line-height: 2.75rem;
-  letter-spacing: -2%;
+  letter-spacing: -0.045rem;
   margin: 0;
 }
 p {
@@ -74,10 +74,10 @@ hr {
   border: none;
   height: 1px;
   background-color: #eaecf0;
-  margin: 1rem 0;
+  margin: calc(1rem - 1px) 0 1rem;
 }
 h2 + hr {
-  margin-top: 0.75rem;
+  margin-top: calc(0.75rem - 1px);
 }
 @media (prefers-color-scheme: dark) {
   hr {

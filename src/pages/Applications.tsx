@@ -27,11 +27,13 @@ export default function Applications() {
         />
       </div>
       <hr />
-      <Grid columns={2} gap="1.5rem 1rem">
-        {applications.map((a) => (
-          <Application key={a.id} id={a.id} text={a.text} isCollapsed />
-        ))}
-      </Grid>
+      {applications.length > 0 && (
+        <Grid columns={2} gap="1.5rem 1rem" style={{ marginTop: '1.5rem' }}>
+          {applications.map((a) => (
+            <Application key={a.id} id={a.id} text={a.text} isCollapsed />
+          ))}
+        </Grid>
+      )}
 
       <Goal />
     </>
