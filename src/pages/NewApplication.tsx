@@ -87,7 +87,7 @@ Thank you for considering my application. I eagerly await the opportunity to dis
     setIsLoading(false);
     setGeneratedText(text);
     const id = nanoid();
-    addApplication({ id, text: generatedText, date: getTodayDate() });
+    addApplication({ id, text, date: getTodayDate() });
   };
 
   return (
