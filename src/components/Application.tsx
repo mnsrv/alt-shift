@@ -11,12 +11,14 @@ type ApplicationProps = {
   id?: string;
   text?: string;
   isCollapsed?: boolean;
+  isLoading?: boolean;
 };
 
 export default function Application({
   id,
   text,
   isCollapsed,
+  isLoading = false,
 }: ApplicationProps) {
   const placeholder = 'Your personalized job application will appear here...';
 
@@ -26,15 +28,23 @@ export default function Application({
         application_collapsed: isCollapsed,
       })}
     >
-      <p className="application-text">{text || placeholder}</p>
-      <div className="application-buttons">
-        {id ? (
-          <DeleteButton onDelete={() => deleteApplication(id)} />
-        ) : (
-          <span />
-        )}
-        <CopyButton textToCopy={text} />
-      </div>
+      {isLoading && (
+        <div className="application-loading">
+          <div className="application-loading-blur" />
+          <div className="application-loading-circle" />
+        </div>
+      )}
+      {!isLoading && <p className="application-text">{text || placeholder}</p>}
+      {!isLoading && (
+        <div className="application-buttons">
+          {id ? (
+            <DeleteButton onDelete={() => deleteApplication(id)} />
+          ) : (
+            <span />
+          )}
+          <CopyButton textToCopy={text} />
+        </div>
+      )}
     </div>
   );
 }

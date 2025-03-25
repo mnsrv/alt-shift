@@ -145,7 +145,7 @@ Thank you for considering my application. I eagerly await the opportunity to dis
             </div>
           </form>
         </div>
-        <Application text={application} />
+        <Application text={application} isLoading={true} />
       </Grid>
       {application && <Goal />}
     </>
