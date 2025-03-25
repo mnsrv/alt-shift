@@ -1,0 +1,35 @@
+.application-card {
+  background-color: var(--color-application-background);
+  height: 15rem;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.application-card-text {
+  white-space: pre-line;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+}
+
+.application-card-text:after {
+  content: '';
+  background: linear-gradient(
+    180deg,
+    rgba(242, 244, 247, 0) 0%,
+    var(--color-application-background) 100%
+  );
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 2.5rem;
+}
+
+.application-card-buttons {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,6 +1,8 @@
 import { computed } from 'nanostores';
 import { persistentAtom } from '@nanostores/persistent';
 
+import { getTodayDate } from '../utils/utils';
+
 type Application = {
   id: string;
   text: string;
@@ -11,11 +13,6 @@ export const $applications = persistentAtom<Application[]>('applications', [], {
   encode: JSON.stringify,
   decode: JSON.parse,
 });
-
-export function getTodayDate(): string {
-  const today = new Date();
-  return today.toISOString().split('T')[0];
-}
 
 export const $applicationsCount = computed($applications, (applications) => {
   const todayDate = getTodayDate();

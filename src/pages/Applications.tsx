@@ -4,7 +4,7 @@ import { useStore } from '@nanostores/react';
 import Button from '../components/Button';
 import Goal from '../components/Goal';
 import Grid from '../components/Grid';
-import Application from '../components/Application';
+import ApplicationCard from '../components/ApplicationCard';
 
 import { $applications } from '../store/applications';
 
@@ -30,7 +30,7 @@ export default function Applications() {
       {applications.length > 0 && (
         <Grid columns={2} gap="1.5rem 1rem" style={{ marginTop: '1.5rem' }}>
           {applications.map((a) => (
-            <Application key={a.id} id={a.id} text={a.text} isCollapsed />
+            <ApplicationCard key={a.id} id={a.id} text={a.text} />
           ))}
         </Grid>
       )}

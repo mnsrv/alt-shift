@@ -6,11 +6,12 @@ import { nanoid } from 'nanoid';
 
 import Button from '../components/Button';
 import { Input, TextArea } from '../components/Input';
-import Application from '../components/Application';
+import ApplicationGenerator from '../components/ApplicationGenerator';
 import Goal from '../components/Goal';
 import Grid from '../components/Grid';
 
-import { addApplication, getTodayDate } from '../store/applications';
+import { addApplication } from '../store/applications';
+import { getTodayDate, sleep } from '../utils/utils';
 
 type ApplicationFormData = {
   jobTitle: string;
@@ -53,20 +54,24 @@ export default function NewApplication() {
     mode: 'onChange',
   });
   const location = useLocation();
-  const [application, setApplication] = useState('');
+  const [generatedText, setGeneratedText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const isCompleted = !!generatedText;
 
   useEffect(() => {
     // reset form when user navigates to the same page
-    if (application) {
+    if (generatedText) {
       reset();
-      setApplication('');
+      setGeneratedText('');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.key]);
 
-  const onSubmit = (data: ApplicationFormData) => {
-    console.log('Form submitted:', data);
-    const id = nanoid();
+  const onSubmit = async (data: ApplicationFormData) => {
+    setIsLoading(true);
+
+    await sleep(2000);
+
     const text = `Dear ${data.company} Team,
 
 I am writing to express my interest in the ${data.jobTitle} position.
@@ -78,8 +83,11 @@ ${data.details}
 I am confident that my skills and enthusiasm would translate into valuable contributions to your esteemed organization.
 
 Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.`;
-    addApplication({ id, text, date: getTodayDate() });
-    setApplication(text);
+
+    setIsLoading(false);
+    setGeneratedText(text);
+    const id = nanoid();
+    addApplication({ id, text: generatedText, date: getTodayDate() });
   };
 
   return (
@@ -123,12 +131,13 @@ Thank you for considering my application. I eagerly await the opportunity to dis
                   maxLength: 1200,
                 })}
               />
-              {!application ? (
+              {!isCompleted ? (
                 <Button
-                  title={isSubmitting ? 'Saving...' : 'Generate Now'}
+                  title={isLoading ? undefined : 'Generate Now'}
+                  icon={isLoading ? 'loading' : undefined}
                   buttonSize="l"
                   type="submit"
-                  disabled={isSubmitting || !isValid}
+                  disabled={isSubmitting || !isValid || isLoading}
                 />
               ) : (
                 <Button
@@ -138,16 +147,18 @@ Thank you for considering my application. I eagerly await the opportunity to dis
                   buttonSize="l"
                   onClick={() => {
                     reset();
-                    setApplication('');
+                    setGeneratedText('');
                   }}
                 />
               )}
             </div>
           </form>
         </div>
-        <Application text={application} isLoading={true} />
+        <div className="new-application-content">
+          <ApplicationGenerator text={generatedText} isLoading={isLoading} />
+        </div>
       </Grid>
-      {application && <Goal />}
+      {isCompleted && <Goal />}
     </>
   );
 }
