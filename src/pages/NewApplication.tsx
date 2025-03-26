@@ -11,7 +11,7 @@ import Goal from '../components/Goal';
 import Grid from '../components/Grid';
 
 import { addApplication } from '../store/applications';
-import { getTodayDate, sleep } from '../utils/utils';
+import { getTodayDate } from '../utils/utils';
 
 type ApplicationFormData = {
   jobTitle: string;
@@ -70,9 +70,7 @@ export default function NewApplication() {
   const onSubmit = async (data: ApplicationFormData) => {
     setIsLoading(true);
 
-    await sleep(2000);
-
-    const text = `Dear ${data.company} Team,
+    const defaultText = `Dear ${data.company} Team,
 
 I am writing to express my interest in the ${data.jobTitle} position.
 
@@ -83,6 +81,29 @@ ${data.details}
 I am confident that my skills and enthusiasm would translate into valuable contributions to your esteemed organization.
 
 Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.`;
+
+    let text = defaultText;
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          responseData.error || `HTTP error! status: ${response.status}`,
+        );
+      }
+
+      const { text: generatedText } = responseData;
+      text = generatedText;
+    } catch (error) {
+      console.error('Error generating cover letter:', error);
+    }
 
     setIsLoading(false);
     setGeneratedText(text);
