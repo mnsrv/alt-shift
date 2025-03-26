@@ -15,8 +15,8 @@ export default function ApplicationCard({ id, text }: ApplicationCardProps) {
     <div className="application-card">
       <p className="application-card-text">{text}</p>
       <div className="application-card-buttons">
-        <CopyButton textToCopy={text} />
         <DeleteButton onDelete={() => deleteApplication(id)} />
+        <CopyButton textToCopy={text} />
       </div>
     </div>
   );
